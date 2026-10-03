@@ -1,0 +1,20 @@
+---
+import { client } from '../lib/client';
+
+const { demo, company } = client;
+---
+
+{
+  demo && (
+    <aside aria-label="Site de démonstration" class="bg-ink text-bg">
+      <p class="container-site flex flex-wrap items-center justify-center gap-x-3 gap-y-1 py-2.5 text-center text-sm">
+        <span>
+          <strong class="font-semibold">Site de démonstration.</strong> {company.name} est une entreprise fictive, ses coordonnées aussi.
+        </span>
+        <a href={demo.offerUrl} class="font-semibold underline underline-offset-4 hover:no-underline">
+          Le même pour votre atelier
+        </a>
+      </p>
+    </aside>
+  )
+}

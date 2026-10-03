@@ -8,6 +8,7 @@ const client = await loadClient();
 export default defineConfig({
   site: client.site.url,
   base: process.env.BASE_PATH ?? '/',
-  integrations: [sitemap()],
+  // Pas de sitemap pour la démo : elle est en noindex
+  integrations: client.demo ? [] : [sitemap()],
   vite: { plugins: [tailwindcss()] },
 });

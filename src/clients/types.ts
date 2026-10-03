@@ -73,4 +73,10 @@ export interface ClientConfig {
   };
   hosting: { name: string; address: string };
   credit?: { label: string; url: string };
+  /**
+   * Site de démonstration (entreprise fictive) : affiche un bandeau,
+   * retire le site des moteurs de recherche et ne génère pas de sitemap.
+   * À ne jamais renseigner pour un vrai client.
+   */
+  demo?: { offerUrl: string };
 }
