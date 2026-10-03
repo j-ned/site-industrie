@@ -1,0 +1,92 @@
+---
+import Icon from './Icon.astro';
+import { client } from '../lib/client';
+
+const { contact, company } = client;
+const useEndpoint = Boolean(contact.formAction);
+const action = useEndpoint ? contact.formAction : `mailto:${company.email}?subject=${encodeURIComponent('Demande de devis')}`;
+const mapUrl = company.geo
+  ? `https://www.openstreetmap.org/?mlat=${company.geo.lat}&mlon=${company.geo.lng}#map=16/${company.geo.lat}/${company.geo.lng}`
+  : `https://www.openstreetmap.org/search?query=${encodeURIComponent(`${company.address.street} ${company.address.postalCode} ${company.address.city}`)}`;
+
+const details = [
+  { icon: 'phone', label: 'Téléphone', value: company.phone, href: `tel:${company.phone.replace(/\s/g, '')}` },
+  { icon: 'envelope-simple', label: 'Email', value: company.email, href: `mailto:${company.email}` },
+  { icon: 'map-pin', label: 'Adresse', value: `${company.address.street}, ${company.address.postalCode} ${company.address.city}`, href: mapUrl },
+  { icon: 'clock', label: 'Horaires', value: company.hours },
+];
+---
+
+<section id="devis" class="section border-t border-line">
+  <div class="container-site grid gap-14 lg:grid-cols-12">
+    <div class="lg:col-span-5">
+      <h2 class="h2">{contact.title}</h2>
+      <p class="lead">{contact.text}</p>
+      <dl class="mt-10 space-y-6">
+        {
+          details.map((d) => (
+            <div class="flex gap-4">
+              <Icon name={d.icon} size={22} class="mt-0.5 shrink-0 text-accent" />
+              <div>
+                <dt class="text-sm text-ink-soft">{d.label}</dt>
+                <dd class="mt-0.5 font-semibold">
+                  {d.href ? <a href={d.href} class="underline-offset-4 hover:underline">{d.value}</a> : d.value}
+                </dd>
+              </div>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <form
+      action={action}
+      method="post"
+      enctype={useEndpoint ? 'multipart/form-data' : 'text/plain'}
+      class="grid gap-5 rounded-ui border border-line bg-surface p-6 sm:grid-cols-2 md:p-8 lg:col-span-7"
+    >
+      {Object.entries(contact.hiddenFields ?? {}).map(([name, value]) => <input type="hidden" name={name} value={value} />)}
+      <div class="grid gap-2">
+        <label for="nom" class="text-sm font-semibold">Nom</label>
+        <input id="nom" name="nom" required autocomplete="name" class="field" />
+      </div>
+      <div class="grid gap-2">
+        <label for="societe" class="text-sm font-semibold">Société</label>
+        <input id="societe" name="societe" required autocomplete="organization" class="field" />
+      </div>
+      <div class="grid gap-2">
+        <label for="email" class="text-sm font-semibold">Email professionnel</label>
+        <input id="email" name="email" type="email" required autocomplete="email" class="field" />
+      </div>
+      <div class="grid gap-2">
+        <label for="telephone" class="text-sm font-semibold">Téléphone</label>
+        <input id="telephone" name="telephone" type="tel" autocomplete="tel" class="field" />
+      </div>
+      <div class="grid gap-2 sm:col-span-2">
+        <label for="besoin" class="text-sm font-semibold">Votre besoin</label>
+        <textarea id="besoin" name="besoin" rows="5" required aria-describedby="besoin-aide" class="field resize-y"></textarea>
+        <p id="besoin-aide" class="text-sm text-ink-soft">Pièce, matière, quantité et délai souhaité.</p>
+      </div>
+      {
+        useEndpoint ? (
+          <div class="grid gap-2 sm:col-span-2">
+            <label for="plan" class="text-sm font-semibold">Plan ou modèle 3D (facultatif)</label>
+            <input id="plan" name="plan" type="file" accept=".pdf,.step,.stp,.dxf,.dwg,.igs,.iges" class="field file:mr-4 file:rounded-ui file:border-0 file:bg-surface-strong file:px-3 file:py-1.5 file:font-semibold file:text-ink" />
+            <p class="text-sm text-ink-soft">PDF, STEP, DXF ou IGES.</p>
+          </div>
+        ) : (
+          <p class="text-sm text-ink-soft sm:col-span-2">Vous pouvez joindre votre plan en répondant à notre email de confirmation, ou l’envoyer à {company.email}.</p>
+        )
+      }
+      <div class="flex flex-wrap items-center justify-between gap-4 sm:col-span-2">
+        <p class="max-w-[42ch] text-xs text-ink-soft">
+          Vos données servent uniquement à répondre à votre demande. <a href={`${import.meta.env.BASE_URL}mentions-legales/`} class="underline">En savoir plus</a>
+        </p>
+        <button type="submit" class="btn-primary">
+          Envoyer ma demande
+          <Icon name="arrow-right" size={18} />
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

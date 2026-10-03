@@ -1,0 +1,21 @@
+---
+import { client } from '../lib/client';
+
+const { process } = client;
+---
+
+<section class="section bg-surface" aria-labelledby="process-titre">
+  <div class="container-site">
+    <h2 id="process-titre" class="h2">{process.title}</h2>
+    <ol class="mt-14 grid gap-10 md:grid-cols-5 md:gap-6">
+      {
+        process.steps.map((s) => (
+          <li class="relative border-l-2 border-accent pl-5 md:border-l-0 md:border-t-2 md:pl-0 md:pt-6">
+            <h3 class="text-xl font-bold">{s.verb}</h3>
+            <p class="mt-2 text-ink-soft">{s.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
