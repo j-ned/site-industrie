@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import DemoBanner from '../components/DemoBanner.astro';
 import { client } from '../lib/client';
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 }
 
 const { site, company, hero } = client;
-const { title = site.title, description = site.description, noindex = false } = Astro.props;
+const { title = site.title, description = site.description, noindex = Boolean(client.demo) } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL(hero.image.src, site.url).href;
 
@@ -59,7 +60,7 @@ const jsonLd = {
     <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#16181c" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.svg`} type="image/svg+xml" />
-    <link rel="sitemap" href={`${import.meta.env.BASE_URL}sitemap-index.xml`} />
+    {!client.demo && <link rel="sitemap" href={`${import.meta.env.BASE_URL}sitemap-index.xml`} />}
     <style set:html={`:root{--client-accent:${site.accent};--client-accent-dark:${site.accentDark}}`}></style>
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
@@ -67,6 +68,7 @@ const jsonLd = {
     <a href="#contenu" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-ui focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink">
       Aller au contenu
     </a>
+    <DemoBanner />
     <slot />
   </body>
 </html>

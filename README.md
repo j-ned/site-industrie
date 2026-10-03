@@ -26,6 +26,7 @@ CLIENT=<slug> pnpm build          # site statique dans dist/
 ```
 
 Sans `CLIENT`, c'est la fiche `demo` (entreprise fictive) qui est construite.
+La fiche `demo` porte `demo: { offerUrl }` : bandeau « Site de démonstration », `noindex` et pas de sitemap. `pnpm nouveau` retire ce champ, une fiche client ne doit jamais l'avoir.
 
 ## Règles pour la fiche
 

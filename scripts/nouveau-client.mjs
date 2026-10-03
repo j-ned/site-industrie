@@ -17,7 +17,12 @@ if (existsSync(target)) {
 }
 
 const demo = readFileSync(resolve(root, 'src/clients/demo.ts'), 'utf8');
-writeFileSync(target, demo.replaceAll('/images/', `/images/${slug}/`).replace('https://site-industrie.', `https://${slug}.`));
+const content = demo
+  .replaceAll('/images/', `/images/${slug}/`)
+  .replace('https://site-industrie.', `https://${slug}.`)
+  // Un vrai client n'est jamais un site de démonstration (bandeau + noindex)
+  .replace(/^\s*demo: \{.*\},\n/m, '');
+writeFileSync(target, content);
 
 const imgDir = resolve(root, 'public/images', slug);
 mkdirSync(imgDir, { recursive: true });

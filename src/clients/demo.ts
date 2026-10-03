@@ -149,6 +149,7 @@ const config: ClientConfig = {
   },
   hosting: { name: 'OVHcloud', address: '2 rue Kellermann, 59100 Roubaix, France' },
   credit: { label: 'Site réalisé par Julien Nédellec', url: 'https://nedellec-julien.fr' },
+  demo: { offerUrl: 'https://nedellec-julien.fr/offre-site-industrie' },
 };
 
 export default config;
