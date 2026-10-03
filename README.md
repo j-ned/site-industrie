@@ -54,3 +54,4 @@ Pour une maquette, laisse `site.url` sur ton sous-domaine. À la livraison, remp
 - `public/favicon.svg` : reprendre le logo du client
 - Mentions légales : vérifier SIRET, RCS, capital et hébergeur
 - `credit` : à garder (lien vers ton site) si le client est d'accord
+# site-industrie
