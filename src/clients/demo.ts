@@ -4,7 +4,7 @@ import type { ClientConfig } from './types';
 // par ceux du prospect (site actuel, fiche Google, Pappers, LinkedIn).
 const config: ClientConfig = {
   site: {
-    url: 'https://demo-usinage.nedellec-julien.fr',
+    url: 'https://site-industrie.nedellec-julien.fr',
     title: 'Delaunay Précision | Usinage de précision à Élancourt (78)',
     description:
       'Tournage et fraisage CN 5 axes de pièces de précision pour l’aéronautique, le médical et l’énergie. Atelier certifié EN 9100 à Élancourt, Yvelines.',

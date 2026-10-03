@@ -17,7 +17,7 @@ if (existsSync(target)) {
 }
 
 const demo = readFileSync(resolve(root, 'src/clients/demo.ts'), 'utf8');
-writeFileSync(target, demo.replaceAll('/images/', `/images/${slug}/`).replace('demo-usinage', slug));
+writeFileSync(target, demo.replaceAll('/images/', `/images/${slug}/`).replace('https://site-industrie.', `https://${slug}.`));
 
 const imgDir = resolve(root, 'public/images', slug);
 mkdirSync(imgDir, { recursive: true });
