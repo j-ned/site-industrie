@@ -1,0 +1,38 @@
+---
+import Icon from './Icon.astro';
+import { client, asset } from '../lib/client';
+
+const { hero, company } = client;
+---
+
+<section class="relative overflow-hidden border-b border-line">
+  <div class="container-site grid items-center gap-10 py-12 md:py-16 lg:min-h-[calc(100dvh-4rem)] lg:grid-cols-12 lg:gap-12 lg:py-20">
+    <div class="rise lg:col-span-6">
+      <p class="mb-5 text-sm font-semibold uppercase tracking-[0.14em] text-accent">
+        Sous-traitance mécanique, {company.address.city}
+      </p>
+      <h1 class="text-4xl font-extrabold leading-[1.05] tracking-tight md:text-5xl xl:text-6xl">
+        {hero.title}
+      </h1>
+      <p class="mt-6 max-w-[46ch] text-lg leading-relaxed text-ink-soft md:text-xl">{hero.subtitle}</p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="#devis" class="btn-primary">
+          Demander un devis
+          <Icon name="arrow-right" size={18} />
+        </a>
+        <a href="#savoir-faire" class="btn-ghost">Nos savoir-faire</a>
+      </div>
+    </div>
+
+    <div class="rise relative lg:col-span-6" style="animation-delay:120ms">
+      <img
+        src={asset(hero.image.src)}
+        alt={hero.image.alt}
+        width="1600"
+        height="1200"
+        fetchpriority="high"
+        class="aspect-[4/3] w-full rounded-ui object-cover lg:aspect-[5/6]"
+      />
+    </div>
+  </div>
+</section>

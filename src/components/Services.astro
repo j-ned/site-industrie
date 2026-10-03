@@ -1,0 +1,45 @@
+---
+import Icon from './Icon.astro';
+import { client, asset } from '../lib/client';
+
+const { services, workshop } = client;
+const [first, second, ...rest] = services.items;
+---
+
+<section id="savoir-faire" class="section">
+  <div class="container-site">
+    <h2 class="h2">{services.title}</h2>
+    <p class="lead">{services.intro}</p>
+
+    <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {/* Cellule principale : photo d'atelier en fond */}
+      <article class="relative isolate flex min-h-80 flex-col justify-end overflow-hidden rounded-ui p-7 text-white md:col-span-2 md:min-h-96">
+        <img src={asset(workshop[0].src)} alt="" loading="lazy" class="absolute inset-0 -z-10 size-full object-cover" />
+        <div class="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/45 to-black/5"></div>
+        <Icon name={first.icon} size={32} />
+        <h3 class="mt-4 text-2xl font-bold">{first.name}</h3>
+        <p class="mt-2 max-w-[48ch] text-white/85">{first.text}</p>
+        {first.specs && <p class="mt-4 font-mono text-sm text-white/90">{first.specs}</p>}
+      </article>
+
+      {/* Cellule accent */}
+      <article class="flex flex-col rounded-ui bg-accent p-7 text-accent-ink">
+        <Icon name={second.icon} size={32} />
+        <h3 class="mt-auto pt-10 text-2xl font-bold">{second.name}</h3>
+        <p class="mt-2 opacity-90">{second.text}</p>
+        {second.specs && <p class="mt-4 font-mono text-sm">{second.specs}</p>}
+      </article>
+
+      {
+        rest.map((s) => (
+          <article class="flex flex-col rounded-ui border border-line bg-surface p-7">
+            <Icon name={s.icon} size={28} class="text-accent" />
+            <h3 class="mt-6 text-xl font-bold">{s.name}</h3>
+            <p class="mt-2 text-ink-soft">{s.text}</p>
+            {s.specs && <p class="mt-auto pt-5 font-mono text-sm text-ink">{s.specs}</p>}
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

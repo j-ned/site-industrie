@@ -1,0 +1,26 @@
+---
+// Icônes Phosphor lues depuis @iconify-json/ph, rendues en SVG inline au build (zéro JS).
+import set from '@iconify-json/ph/icons.json';
+
+interface Props {
+  name: string;
+  class?: string;
+  size?: number;
+}
+
+const { name, class: className, size = 24 } = Astro.props;
+const resolved = set.aliases?.[name as keyof typeof set.aliases]?.parent ?? name;
+const icon = set.icons[resolved as keyof typeof set.icons];
+if (!icon) throw new Error(`Icône Phosphor inconnue : ${name}`);
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox={`0 0 ${set.width} ${set.height}`}
+  width={size}
+  height={size}
+  fill="currentColor"
+  aria-hidden="true"
+  class={className}
+  set:html={icon.body}
+/>

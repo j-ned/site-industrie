@@ -1,0 +1,30 @@
+---
+import Icon from './Icon.astro';
+import { client } from '../lib/client';
+---
+
+<section class="section" aria-labelledby="matieres-titre">
+  <div class="container-site grid gap-16 lg:grid-cols-2 lg:gap-24">
+    <div>
+      <h2 id="matieres-titre" class="h2">Les matières que nous travaillons</h2>
+      <ul class="mt-8 flex flex-wrap gap-2.5">
+        {client.materials.map((m) => <li class="rounded-ui border border-line px-4 py-2 font-medium">{m}</li>)}
+      </ul>
+    </div>
+    <div>
+      <h2 class="h2">Les secteurs que nous servons</h2>
+      <ul class="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-3">
+        {
+          client.sectors.map((s) => (
+            <li class="flex items-center gap-3 font-medium">
+              <span class="grid size-11 shrink-0 place-items-center rounded-ui bg-surface text-accent">
+                <Icon name={s.icon} size={22} />
+              </span>
+              {s.name}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

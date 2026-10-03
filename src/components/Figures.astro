@@ -1,0 +1,16 @@
+---
+import { client } from '../lib/client';
+---
+
+<section aria-label="Chiffres clés" class="border-b border-line bg-surface">
+  <dl class="container-site grid grid-cols-2 lg:grid-cols-4">
+    {
+      client.figures.map((f, i) => (
+        <div class:list={['py-8 md:py-10', i % 2 === 1 && 'pl-6 md:pl-8 border-l border-line', i >= 2 && 'border-t border-line lg:border-t-0', i === 2 && 'lg:border-l lg:pl-8']}>
+          <dt class="text-sm text-ink-soft">{f.label}</dt>
+          <dd class="mt-2 font-mono text-2xl font-medium tracking-tight md:text-3xl">{f.value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>

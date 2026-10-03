@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { client } from '../lib/client';
+
+const { company, hosting, site } = client;
+---
+
+<Base title={`Mentions légales | ${company.name}`} description={`Mentions légales et politique de confidentialité du site ${company.name}.`}>
+  <Header />
+  <main id="contenu" class="container-site max-w-3xl py-16 md:py-24">
+    <h1 class="text-4xl font-extrabold tracking-tight">Mentions légales</h1>
+
+    <div class="mt-10 space-y-10 leading-relaxed text-ink-soft [&_h2]:mb-3 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-ink [&_strong]:text-ink">
+      <section>
+        <h2>Éditeur du site</h2>
+        <p>
+          <strong>{company.name}</strong>, {company.legalForm}{company.capital && ` au capital de ${company.capital}`}<br />
+          {company.address.street}, {company.address.postalCode} {company.address.city}<br />
+          SIRET : {company.siret}{company.rcs && <><br />{company.rcs}</>}{company.tva && <><br />TVA intracommunautaire : {company.tva}</>}<br />
+          Téléphone : {company.phone}, email : {company.email}<br />
+          Directeur de la publication : {company.director}
+        </p>
+      </section>
+      <section>
+        <h2>Hébergement</h2>
+        <p>{hosting.name}, {hosting.address}</p>
+      </section>
+      <section>
+        <h2>Données personnelles</h2>
+        <p>
+          Les informations envoyées par le formulaire de demande de devis (nom, société, email, téléphone, message) servent uniquement à traiter votre demande et au suivi commercial qui en découle. Elles ne sont ni vendues ni cédées. Elles sont conservées 3 ans après notre dernier échange.
+        </p>
+        <p class="mt-3">
+          Conformément au RGPD, vous pouvez demander l’accès, la rectification ou la suppression de vos données en écrivant à {company.email}. Vous pouvez aussi adresser une réclamation à la CNIL (cnil.fr).
+        </p>
+      </section>
+      <section>
+        <h2>Cookies</h2>
+        <p>Ce site ne dépose aucun cookie et n’utilise aucun outil de mesure d’audience tiers.</p>
+      </section>
+      <section>
+        <h2>Propriété intellectuelle</h2>
+        <p>Les textes, photographies et logos de {site.url.replace(/^https?:\/\//, '')} appartiennent à {company.name}. Toute reproduction sans autorisation est interdite.</p>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Base>
