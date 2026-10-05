@@ -37,7 +37,7 @@ const config: ClientConfig = {
     title: 'Vos pièces de précision, usinées au centième près.',
     subtitle:
       'Tournage et fraisage CN pour l’aéronautique et le médical, du prototype à la série, depuis 1987.',
-    image: { src: '/images/hero.svg', alt: 'Tour CN en cours d’usinage dans l’atelier' },
+    image: { src: '/images/hero-tour-cn.jpg', alt: 'Tige d’acier usinée sur un tour CN, outil de coupe en prise' },
   },
   figures: [
     { value: '1987', label: 'Atelier fondé à Élancourt' },
