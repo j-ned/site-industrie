@@ -125,7 +125,7 @@ const config: ClientConfig = {
       'Rugosimètre et projecteur de profil',
       'Traçabilité matière par lot',
     ],
-    image: { src: '/images/qualite.svg', alt: 'Contrôle d’une pièce sur machine à mesurer 3D' },
+    image: { src: '/images/controle-comparateur.jpg', alt: 'Comparateur à cadran en contrôle sur une pièce usinée' },
   },
   process: {
     title: 'Du plan à la livraison',
@@ -138,9 +138,9 @@ const config: ClientConfig = {
     ],
   },
   workshop: [
-    { src: '/images/atelier.svg', alt: 'Vue générale de l’atelier de production' },
-    { src: '/images/piece.svg', alt: 'Pièce en titane après usinage' },
-    { src: '/images/reglage.svg', alt: 'Réglage des outils avant une série' },
+    { src: '/images/atelier-fraisage.jpg', alt: 'Fraisage d’un carter sous arrosage dans un centre d’usinage' },
+    { src: '/images/piece-usinee.jpg', alt: 'Deux pièces usinées posées sur leur plan de définition' },
+    { src: '/images/reglage-micrometre.jpg', alt: 'Contrôle au micromètre d’une pièce dans la machine, avant la série' },
   ],
   contact: {
     title: 'Envoyez-nous votre plan',
