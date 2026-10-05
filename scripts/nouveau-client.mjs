@@ -18,8 +18,12 @@ if (existsSync(target)) {
 
 const demo = readFileSync(resolve(root, 'src/clients/demo.ts'), 'utf8');
 const content = demo
-  // La photo du hero est propre à la démo : un client repart du gabarit SVG copié plus bas
+  // Les photos sont propres à la démo : un client repart des gabarits SVG copiés plus bas
   .replace('/images/hero-tour-cn.jpg', '/images/hero.svg')
+  .replace('/images/controle-comparateur.jpg', '/images/qualite.svg')
+  .replace('/images/atelier-fraisage.jpg', '/images/atelier.svg')
+  .replace('/images/piece-usinee.jpg', '/images/piece.svg')
+  .replace('/images/reglage-micrometre.jpg', '/images/reglage.svg')
   .replaceAll('/images/', `/images/${slug}/`)
   .replace('https://site-industrie.', `https://${slug}.`)
   // Un vrai client n'est jamais un site de démonstration (bandeau + noindex)
