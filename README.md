@@ -46,6 +46,9 @@ La fiche `demo` porte `demo: { offerUrl }` : bandeau « Site de démonstration �
 Le build est statique (`dist/`). Deux options :
 
 - **Sous-domaine sur ton VPS (Dokploy)** : `martin-usinage.nedellec-julien.fr`, servi par un conteneur nginx.
+  La démo (`site-industrie.nedellec-julien.fr`) est servie ainsi : image nginx construite et vérifiée
+  par la CI, publiée sur GHCR, redéployée par Dokploy à chaque fusion sur `master`. Voir
+  [`deploy/README.md`](./deploy/README.md).
 - **Sous-dossier** : `BASE_PATH=/martin-usinage/ CLIENT=martin-usinage pnpm build`.
 
 Pour une maquette, laisse `site.url` sur ton sous-domaine. À la livraison, remplace-le par le vrai domaine du client.

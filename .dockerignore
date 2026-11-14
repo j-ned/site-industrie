@@ -1,0 +1,15 @@
+# Contexte de build = racine du dépôt. Rien de local ni de secret dans l'image.
+.git
+.github
+.astro
+.claude
+.idea
+node_modules
+dist
+prospection
+scripts
+deploy
+ci
+**/.env
+**/.env.*
+**/*.md
