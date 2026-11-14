@@ -9,7 +9,6 @@ dist
 prospection
 scripts
 deploy
-ci
 **/.env
 **/.env.*
 **/*.md
